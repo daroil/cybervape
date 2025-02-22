@@ -12,6 +12,9 @@
     --video-opacity: 0.4;           /* Transparency of the video */
     --video-contrast: 1.2;          /* Contrast adjustment */
     --video-brightness: 0.8;        /* Brightness adjustment */
+
+    --progress-bg: #4b3070; /* Background of progress elements */
+    --progress-fill: #BF00FF; /* Fill color for progress */
 }
 body {
     margin: 0;
@@ -187,6 +190,90 @@ header p {
     background-color: var(--vibrant-accent);
     border-color: var(--vibrant-accent);
 }
+
+.progress-examples {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Progress Ring (SVG) */
+.progress-ring {
+    --progress: 0; /* Default value */
+    --circumference: calc(45 * 2 * 3.14159); /* 2πr for r=45 */
+    position: relative;
+}
+
+.progress-ring-bg {
+    fill: none;
+    stroke: var(--progress-bg);
+    stroke-width: 10;
+}
+
+.progress-ring-fill {
+    fill: none;
+    stroke: var(--progress-fill);
+    stroke-width: 10;
+    stroke-dasharray: var(--circumference);
+    transform: rotate(-90deg); /* Start at 12 o'clock */
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 1.5s;
+    stroke-dashoffset: calc(var(--circumference) - (var(--progress) / 100) * var(--circumference));
+}
+
+.progress-ring-text {
+    fill: var(--light-purple-text);
+    font-size: 1.2em;
+}
+
+/* Progress Line */
+.progress-line {
+    width: 200px;
+    height: 10px;
+    background-color: var(--progress-bg);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(var(--progress) * 1%);
+    background-color: var(--progress-fill);
+    border-radius: 5px;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+.progress-line.animate-progress::before {
+    animation: fillLine 1.5s ease-out forwards;
+}
+
+@keyframes fillLine {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.progress-line::after {
+    content: attr(style 'var(--progress)') '%';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--light-purple-text);
+    font-size: 1em;
+}
+
 
 footer {
     text-align: center;

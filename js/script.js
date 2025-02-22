@@ -3,17 +3,20 @@ const flavors = [
     {
         name: "Midnight Berry",
         desc: "A bold mix of dark berries with a cool, smooth finish.",
-        image: "https://via.placeholder.com/300x400?text=Midnight+Berry"
+        image: "https://via.placeholder.com/300x400?text=Midnight+Berry",
+        progress: 50
     },
     {
         name: "Smoky Citrus",
         desc: "Zesty orange and lemon with a smoky undertone.",
-        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus"
+        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        progress: 75
     },
     {
         name: "Shadow Mint",
         desc: "Crisp mint with a hint of dark chocolate.",
-        image: "img/wizard_2.jpg"
+        image: "img/wizard_2.jpg",
+        progress: 90
     }
 ];
 
@@ -26,6 +29,10 @@ const flavorDesc = document.getElementById('flavor-desc');
 const productImage = document.getElementById('product-image');
 const productDescription = document.getElementById('product-description');
 const flavorSelector = document.getElementById('flavor-selector');
+const progressRing = document.querySelector('.progress-ring');
+const progressLine = document.querySelector('.progress-line');
+const progressRingText = document.querySelector('.progress-ring-text');
+const progressRingFill = document.querySelector('.progress-ring-fill');
 
 // Function to update flavor content and trigger animations
 function updateFlavor() {
@@ -52,6 +59,14 @@ function updateFlavor() {
     document.querySelectorAll('.flavor-selector button').forEach((btn, index) => {
         btn.classList.toggle('active', index === currentFlavorIndex);
     });
+
+    progressLine.classList.remove('animate-progress');
+    void progressLine.offsetWidth;
+    void progressRing.offsetWidth; // Force reflow
+    progressRing.style.setProperty('--progress', flavor.progress);
+    progressLine.style.setProperty('--progress', flavor.progress);
+    progressRingText.textContent = `${flavor.progress}%`; // Update text
+    progressLine.classList.add('animate-progress');
 }
 
 // Function to create flavor selector buttons

@@ -13,7 +13,7 @@ const flavors = [
     {
         name: "Shadow Mint",
         desc: "Crisp mint with a hint of dark chocolate.",
-        image: "https://via.placeholder.com/300x400?text=Shadow+Mint"
+        image: "img/wizard_2.jpg"
     }
 ];
 
@@ -25,6 +25,7 @@ const flavorName = document.getElementById('flavor-name');
 const flavorDesc = document.getElementById('flavor-desc');
 const productImage = document.getElementById('product-image');
 const productDescription = document.getElementById('product-description');
+const flavorSelector = document.getElementById('flavor-selector');
 
 // Function to update flavor content and trigger animations
 function updateFlavor() {
@@ -46,6 +47,24 @@ function updateFlavor() {
     // Add animate class to trigger animation
     productImage.classList.add('animate');
     productDescription.classList.add('animate');
+
+    // Update active button in selector
+    document.querySelectorAll('.flavor-selector button').forEach((btn, index) => {
+        btn.classList.toggle('active', index === currentFlavorIndex);
+    });
+}
+
+// Function to create flavor selector buttons
+function createFlavorSelector() {
+    flavors.forEach((flavor, index) => {
+        const button = document.createElement('button');
+        button.textContent = flavor.name;
+        button.addEventListener('click', () => {
+            currentFlavorIndex = index;
+            updateFlavor();
+        });
+        flavorSelector.appendChild(button);
+    });
 }
 
 // Scroll event listener for flavor switching
@@ -60,5 +79,6 @@ window.addEventListener('wheel', (event) => {
     updateFlavor();
 });
 
-// Initialize with the first flavor
+// Initialize
+createFlavorSelector();
 updateFlavor();

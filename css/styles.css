@@ -1,3 +1,18 @@
+:root {
+    /* Color variables for the dark purple theme */
+    --dark-purple-bg: #2a1a3f;      /* Main background */
+    --darker-purple: #3b2559;       /* Header/footer */
+    --mid-purple: #4b3070;          /* Product container */
+    --light-purple-text: #d8c4f5;   /* Main text */
+    --vibrant-accent: #BF00FF;      /* Headings and accents */
+    --border-purple: #5a3c78;       /* Borders */
+    --neon-purple: #BF00FF;
+
+    /* Background video variables */
+    --video-opacity: 0.4;           /* Transparency of the video */
+    --video-contrast: 1.2;          /* Contrast adjustment */
+    --video-brightness: 0.8;        /* Brightness adjustment */
+}
 body {
     margin: 0;
     padding: 0;
@@ -9,7 +24,7 @@ body {
     position: relative;
 }
 
-.steam-background {
+.video-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -19,12 +34,12 @@ body {
     overflow: hidden;
 }
 
-.steam-gif {
+.bg-video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the GIF fills the background */
-    opacity: 0.4; /* Subtle transparency to blend with purple */
-    animation: steamFade 5s infinite ease-in-out; /* Optional pulsing effect */
+    object-fit: cover; /* Fills the background, cropping if needed */
+    opacity: 0.4; /* Subtle transparency */
+    filter: contrast(1.2) brightness(0.8); /* Enhances visibility against purple */
 }
 
 @keyframes steamFade {
@@ -35,7 +50,7 @@ body {
 header {
     text-align: center;
     padding: 20px;
-    background-color: #3b2559;
+    /*background-color: #3b2559;*/
     border-bottom: 2px solid #5a3c78;
     position: relative;
     z-index: 1;
@@ -44,7 +59,7 @@ header {
 header h1 {
     margin: 0;
     font-size: 2.5em;
-    color: #ff99cc;
+    color: var(--neon-purple);
 }
 
 header p {
@@ -55,6 +70,7 @@ header p {
 
 .flavor-slider {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: calc(100vh - 120px);
@@ -67,7 +83,7 @@ header p {
     display: flex;
     max-width: 800px;
     width: 100%;
-    background-color: #4b3070;
+    /*background-color: #4b3070;*/
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -134,7 +150,7 @@ header p {
 .product-description h2 {
     margin: 0 0 10px;
     font-size: 1.8em;
-    color: #ff99cc;
+    color: var(--neon-purple);
 }
 
 .product-description p {
@@ -143,10 +159,39 @@ header p {
     color: #d8c4f5;
 }
 
+.flavor-selector {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.flavor-selector button {
+    background-color: var(--darker-purple);
+    color: var(--light-purple-text);
+    border: 1px solid var(--border-purple);
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.flavor-selector button:hover {
+    background-color: var(--mid-purple);
+    transform: scale(1.05);
+}
+
+.flavor-selector button.active {
+    background-color: var(--vibrant-accent);
+    border-color: var(--vibrant-accent);
+}
+
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #3b2559;
+    /*background-color: #3b2559;*/
     border-top: 2px solid #5a3c78;
     position: fixed;
     bottom: 0;

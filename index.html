@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="steam-background">
-        <img src="path-to-your-steam-gif.gif" alt="Rising Steam" class="steam-gif">
+    <div class="video-background">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="img/steambg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 
     <header>
@@ -25,6 +28,9 @@
                 <h2 id="flavor-name">Flavor Name</h2>
                 <p id="flavor-desc">Short description of the flavor goes here.</p>
             </div>
+        </div>
+        <div class="flavor-selector" id="flavor-selector">
+            <!-- Flavor buttons will be dynamically added via JavaScript -->
         </div>
     </section>
 

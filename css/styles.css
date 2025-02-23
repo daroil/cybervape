@@ -52,7 +52,7 @@ body {
 
 header {
     text-align: center;
-    padding: 20px;
+    /*padding: 20px;*/
     /*background-color: #3b2559;*/
     border-bottom: 2px solid #5a3c78;
     position: relative;
@@ -76,7 +76,7 @@ header p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 400px);
     padding: 20px;
     position: relative;
     z-index: 1;
@@ -102,6 +102,12 @@ header p {
     width: 100%;
     height: auto;
     border-radius: 5px;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    max-width: 10em;
 }
 
 .product-image.animate {
@@ -274,6 +280,9 @@ header p {
     font-size: 1em;
 }
 
+.hidden{
+    display: none;
+}
 
 footer {
     text-align: center;

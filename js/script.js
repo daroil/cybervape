@@ -1,22 +1,109 @@
 // Flavor data
 const flavors = [
     {
-        name: "Midnight Berry",
-        desc: "A bold mix of dark berries with a cool, smooth finish.",
+        name: "CHARGE",
+        desc: "Яблоко-жвачка.",
         image: "https://via.placeholder.com/300x400?text=Midnight+Berry",
-        progress: 50
+        progress: 60,
+        progress_2: 40,
+        progress_freeze: 0,
+        color: 'white'
     },
     {
-        name: "Smoky Citrus",
-        desc: "Zesty orange and lemon with a smoky undertone.",
+        name: "BLOSSOM",
+        desc: "Вишнево-ягодный йогурт.",
         image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
-        progress: 75
+        progress: 60,
+        progress_2: 40,
+        progress_freeze: 0,
+        color: 'purple'
     },
     {
-        name: "Shadow Mint",
-        desc: "Crisp mint with a hint of dark chocolate.",
+        name: "MIDNIGHT",
+        desc: "Черника.",
         image: "img/wizard_2.jpg",
-        progress: 90
+        progress: 100,
+        progress_freeze: 25,
+        color: '#BF00FF'
+    },
+    {
+        name: "GUISE",
+        desc: "Премиальный табак.",
+        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        progress: 100,
+        progress_freeze: 0,
+        color: '#BF00FF'
+    },
+    {
+        name: "MAZE",
+        desc: "Вишневый табак.",
+        image: "img/wizard_2.jpg",
+        progress: 50,
+        progress_2: 50,
+        progress_freeze: 0,
+        color: '#'
+    },
+    {
+        name: "FLUX",
+        desc: "Скитлз.",
+        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        progress: 100,
+        progress_freeze: 0,
+        color: '#'
+    },
+    {
+        name: "NOVA",
+        desc: "Клубника-банан.",
+        image: "img/wizard_2.jpg",
+        progress: 50,
+        progress_2: 50,
+        progress_freeze: 25,
+        color: '#'
+    },
+    {
+        name: "SPROUT",
+        desc: "Ягоды-мята-хвоя.",
+        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        progress: 75,
+        progress_2: 25,
+        progress_freeze: 0,
+        color: '#'
+    },
+    {
+        name: "SURGE",
+        desc: "Персик-манго-ананас.",
+        image: "img/wizard_2.jpg",
+        progress: 60,
+        progress_2: 40,
+        progress_freeze: 25,
+        color: '#'
+    },
+    {
+        name: "TETHER",
+        desc: "Клубника-киви.",
+        image: "img/wizard_2.jpg",
+        progress: 60,
+        progress_2: 40,
+        progress_freeze: 25,
+        color: '#'
+    },
+    {
+        name: "BOGBORN",
+        desc: "Лесные ягоды.",
+        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        progress: 50,
+        progress_2: 50,
+        progress_freeze: 25,
+        color: '#'
+    },
+    {
+        name: "EMBERBARK",
+        desc: "Черный чай, земляника-персик.",
+        image: "img/wizard_2.jpg",
+        progress: 60,
+        progress_2: 40,
+        progress_freeze: 0,
+        color: '#'
     }
 ];
 
@@ -29,10 +116,12 @@ const flavorDesc = document.getElementById('flavor-desc');
 const productImage = document.getElementById('product-image');
 const productDescription = document.getElementById('product-description');
 const flavorSelector = document.getElementById('flavor-selector');
-const progressRing = document.querySelector('.progress-ring');
+const progressRing = document.getElementById('progress-ring');
+const progressRing2 = document.getElementById('progress-ring-2');
 const progressLine = document.querySelector('.progress-line');
-const progressRingText = document.querySelector('.progress-ring-text');
-const progressRingFill = document.querySelector('.progress-ring-fill');
+const progressRingText = document.getElementById('progress-ring-text');
+const progressRingText2 = document.getElementById('progress-ring-2-text');
+const bgVideo = document.getElementById('bg-video');
 
 // Function to update flavor content and trigger animations
 function updateFlavor() {
@@ -63,9 +152,23 @@ function updateFlavor() {
     progressLine.classList.remove('animate-progress');
     void progressLine.offsetWidth;
     void progressRing.offsetWidth; // Force reflow
+    void progressRing2.offsetWidth; // Force reflow
     progressRing.style.setProperty('--progress', flavor.progress);
-    progressLine.style.setProperty('--progress', flavor.progress);
     progressRingText.textContent = `${flavor.progress}%`; // Update text
+    if (!flavor.progress_2)
+    {
+        hideElement(progressRing2);
+        hideElement(progressRingText2);
+    }
+    else
+    {
+        showElement(progressRing2);
+        showElement(progressRingText2);
+        progressRing2.style.setProperty('--progress', flavor.progress_2);
+        progressRingText2.textContent = `${flavor.progress_2}%`; // Update text
+    }
+
+    progressLine.style.setProperty('--progress', flavor.progress_freeze);
     progressLine.classList.add('animate-progress');
 }
 
@@ -93,6 +196,26 @@ window.addEventListener('wheel', (event) => {
     }
     updateFlavor();
 });
+
+function hideElement(element)
+{
+    if (element)
+    {
+        if (!element.classList.contains('hidden'))
+            element.classList.add('hidden');
+    }
+}
+
+function showElement(element)
+{
+    if (element)
+    {
+        if (element.classList.contains('hidden'))
+            element.classList.remove('hidden');
+    }
+}
+
+bgVideo.playbackRate = 0.5; // Half speed (adjust as needed)
 
 // Initialize
 createFlavorSelector();

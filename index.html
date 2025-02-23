@@ -15,15 +15,16 @@
 </head>
 <body>
     <div class="video-background">
-        <video autoplay muted loop playsinline class="bg-video">
+        <video autoplay muted loop playsinline class="bg-video" id="bg-video">
             <source src="img/steambg.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
 
     <header>
-        <h1>Synthetic</h1>
-        <p>Premium E-Liquid for the Modern Vaper</p>
+        <div class="logo">
+                <img src="img/synthetic-logo-white.png" alt="Synthetic Brand logo">
+            </div>
     </header>
 
     <section class="flavor-slider">
@@ -35,10 +36,15 @@
                 <h2 id="flavor-name">Flavor Name</h2>
                 <p id="flavor-desc">Short description of the flavor goes here.</p>
                 <div class="progress-examples">
-                    <svg class="progress-ring" width="100" height="100" style="--progress: 75;">
+                    <svg class="progress-ring" id="progress-ring" width="100" height="100" style="--progress: 75;">
                         <circle class="progress-ring-bg" cx="50" cy="50" r="45" />
                         <circle class="progress-ring-fill" cx="50" cy="50" r="45" />
-                        <text x="50" y="55" text-anchor="middle" class="progress-ring-text">75%</text>
+                        <text x="50" y="55" text-anchor="middle" class="progress-ring-text" id="progress-ring-text">75%</text>
+                    </svg>
+                    <svg class="progress-ring" id="progress-ring-2" width="100" height="100" style="--progress: 75;">
+                        <circle class="progress-ring-bg" cx="50" cy="50" r="45" />
+                        <circle class="progress-ring-fill" cx="50" cy="50" r="45" />
+                        <text x="50" y="55" text-anchor="middle" class="progress-ring-text" id="progress-ring-2-text">75%</text>
                     </svg>
                     <div class="progress-line" style="--progress: 50;"></div> <!-- Example: 50% -->
                 </div>

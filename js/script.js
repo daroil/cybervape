@@ -3,7 +3,7 @@ const flavors = [
     {
         name: "CHARGE",
         desc: "Яблоко-жвачка.",
-        image: "https://via.placeholder.com/300x400?text=Midnight+Berry",
+        image: "img/Blossom.png",
         progress: 60,
         progress_2: 40,
         progress_freeze: 0,

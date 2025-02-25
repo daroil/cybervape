@@ -123,6 +123,32 @@ const progressRingText = document.getElementById('progress-ring-text');
 const progressRingText2 = document.getElementById('progress-ring-2-text');
 const bgVideo = document.getElementById('bg-video');
 
+function updateSVGColor(color){
+    const path = document.getElementById('path3619');
+    if(path)
+        path.setAttribute('fill',color);
+}
+
+function changeSVGColor(color) {
+    // Get the <object> element
+    const svgObject = document.getElementById('svg_image');
+
+    // Wait for the SVG content to load
+    svgObject.addEventListener('load', () => {
+        // Access the internal SVG document
+        const svgDoc = svgObject.contentDocument;
+
+        // Find the element you want to change (e.g., a circle or path)
+        const circle = svgDoc.querySelector('path'); // Change 'circle' to the appropriate selector
+
+        // Change the color
+        if (circle) {
+            circle.setAttribute('fill', color); // Change 'fill' to 'stroke' if needed
+        }
+    });
+}
+
+
 // Function to update flavor content and trigger animations
 function updateFlavor() {
     const flavor = flavors[currentFlavorIndex];
@@ -167,7 +193,7 @@ function updateFlavor() {
         progressRing2.style.setProperty('--progress', flavor.progress_2);
         progressRingText2.textContent = `${flavor.progress_2}%`; // Update text
     }
-
+    changeSVGColor('white');
     progressLine.style.setProperty('--progress', flavor.progress_freeze);
     progressLine.classList.add('animate-progress');
 }

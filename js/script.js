@@ -167,31 +167,68 @@ function updateSVGColor(color){
         path.setAttribute('fill',color);
 }
 
+// function changeSVGColor(color) {
+//     // Get the <object> element
+//     const svgObject = document.getElementById('svg_image');
+//
+//     // Wait for the SVG content to load
+//     svgObject.addEventListener('load', () => {
+//         // Access the internal SVG document
+//         const svgDoc = svgObject.contentDocument;
+//
+//         // Find the element you want to change (e.g., a circle or path)
+//         const circle = svgDoc.querySelector('path'); // Change 'circle' to the appropriate selector
+//
+//         // Change the color
+//         if (circle) {
+//             circle.setAttribute('fill', color); // Change 'fill' to 'stroke' if needed
+//         }
+//     });
+//     const svgDoc = svgObject.contentDocument;
+//
+// // Find the element you want to change (e.g., a circle or path)
+//     const circle = svgDoc.querySelector('path'); // Change 'circle' to the appropriate selector
+//
+//     // Change the color
+//     if (circle) {
+//         circle.setAttribute('fill', color); // Change 'fill' to 'stroke' if needed
+//     }
+// }
+
+let firstLoad = true;
+
 function changeSVGColor(color) {
-    // Get the <object> element
     const svgObject = document.getElementById('svg_image');
+    if (!svgObject) {
+        console.error('SVG object not found');
+        return;
+    }
 
-    // Wait for the SVG content to load
-    svgObject.addEventListener('load', () => {
-        // Access the internal SVG document
-        const svgDoc = svgObject.contentDocument;
+    // If the SVG is already loaded, apply the color immediately
+    if (svgObject.contentDocument && !firstLoad) {
+        console.log('here')
+        applyColorToSVG(svgObject, color);
+    } else {
+        firstLoad = false;
+        // Otherwise, wait for the SVG to load
+        svgObject.addEventListener('load', () => {
+            applyColorToSVG(svgObject, color);
+        }, { once: true }); // Ensure the listener is only called once
+    }
+}
 
-        // Find the element you want to change (e.g., a circle or path)
-        const circle = svgDoc.querySelector('path'); // Change 'circle' to the appropriate selector
-
-        // Change the color
-        if (circle) {
-            circle.setAttribute('fill', color); // Change 'fill' to 'stroke' if needed
-        }
-    });
+function applyColorToSVG(svgObject, color) {
     const svgDoc = svgObject.contentDocument;
+    if (!svgDoc) {
+        console.error('SVG document not accessible');
+        return;
+    }
 
-// Find the element you want to change (e.g., a circle or path)
-    const circle = svgDoc.querySelector('path'); // Change 'circle' to the appropriate selector
-
-    // Change the color
-    if (circle) {
-        circle.setAttribute('fill', color); // Change 'fill' to 'stroke' if needed
+    const path = svgDoc.querySelector('path');
+    if (path) {
+        path.setAttribute('fill', color);
+    } else {
+        console.error('No path element found in SVG');
     }
 }
 
@@ -199,7 +236,6 @@ function changeSVGColor(color) {
 // Function to update flavor content and trigger animations
 function updateFlavor() {
     const flavor = flavors[currentFlavorIndex];
-
     // Remove animate class to reset animation
     productImage.classList.remove('animate');
     productDescription.classList.remove('animate');
@@ -365,7 +401,7 @@ function changeCanvasColor(color, imgPath, canvasId)
 
     img.onload = function () {
         const canvas = document.getElementById(canvasId);
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d",{ willReadFrequently: true });
 
         canvas.width = img.width;
         canvas.height = img.height;
@@ -408,7 +444,6 @@ function detectDeviceType()
     }
 
 }
-
 // Initialize
 document.addEventListener('DOMContentLoaded', ()=>{
     createFlavorSelector();

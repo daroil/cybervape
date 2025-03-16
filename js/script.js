@@ -314,7 +314,7 @@ if (device === 'Phone')
     const progressRingText2 = document.getElementById('progress-ring-2-text');
     const progressExamples = document.getElementById('progress-examples');
 
-    hideElement(progressExamples);
+    // hideElement(progressExamples);
     if (progressRing)
     {
         progressRing.setAttribute('width', 50);

@@ -277,16 +277,16 @@ function updateFlavor() {
         progressRing2.style.setProperty('--progress', flavor.progress_2);
         progressRingText2.textContent = `${flavor.progress_2}%`; // Update text
     }
-    // changeSVGColor(flavor.color);
-    // changeCanvasColor(flavor.color,flavor.icon1, 'flavor_icon_1');
+    changeSVGColor(flavor.color);
+    changeCanvasColor(flavor.color,flavor.icon1, 'flavor_icon_1');
     if (flavor.icon2)
     {
         showElement(icon2)
-        // changeCanvasColor(flavor.color,flavor.icon2,'flavor_icon_2');
+        changeCanvasColor(flavor.color,flavor.icon2,'flavor_icon_2');
     }
     else
         hideElement(icon2);
-    // changeCanvasColor(flavor.color,flavor.icon_freeze, 'freeze_icon');
+    changeCanvasColor(flavor.color,flavor.icon_freeze, 'freeze_icon');
     document.documentElement.style.setProperty('--progress-fill', flavor.color);
     progressLine.style.setProperty('--progress', flavor.progress_freeze);
     progressLine.classList.add('animate-progress');
@@ -332,9 +332,9 @@ function changeRing(object)
 {
     if (object)
     {
-        object.setAttribute('cx', 25);
-        object.setAttribute('cy', 25);
-        object.setAttribute('r', 20);
+        object.setAttribute('cx', '25px');
+        object.setAttribute('cy', '25px');
+        object.setAttribute('r', '20px');
     }
 }
 
@@ -353,13 +353,13 @@ if (device === 'Phone')
     // hideElement(progressExamples);
     if (progressRing)
     {
-        progressRing.setAttribute('width', 50);
-        progressRing.setAttribute('height', 50);
+        progressRing.setAttribute('width', '50px');
+        progressRing.setAttribute('height', '50px');
     }
     if (progressRing2)
     {
-        progressRing2.setAttribute('width', 50);
-        progressRing2.setAttribute('height', 50);
+        progressRing2.setAttribute('width', '50px');
+        progressRing2.setAttribute('height', '50px');
     }
     changeRing(progressRingFill1);
     changeRing(progressRingBg1);
@@ -368,14 +368,14 @@ if (device === 'Phone')
     if(progressRingText)
     {
         hideElement(progressRingText)
-        progressRingText.setAttribute('x',25);
-        progressRingText.setAttribute('y',30);
+        progressRingText.setAttribute('x','25px');
+        progressRingText.setAttribute('y','30px');
     }
     if(progressRingText2)
     {
         hideElement(progressRingText2)
-        progressRingText2.setAttribute('x',25);
-        progressRingText2.setAttribute('y',30);
+        progressRingText2.setAttribute('x','25px');
+        progressRingText2.setAttribute('y','30px');
     }
 }
 else if (device === 'Desktop')

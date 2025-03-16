@@ -270,17 +270,6 @@ function createFlavorSelector() {
     });
 }
 
-// Scroll event listener for flavor switching
-window.addEventListener('wheel', (event) => {
-    if (event.deltaY > 0) {
-        // Scroll down - next flavor
-        currentFlavorIndex = (currentFlavorIndex + 1) % flavors.length;
-    } else if (event.deltaY < 0) {
-        // Scroll up - previous flavor
-        currentFlavorIndex = (currentFlavorIndex - 1 + flavors.length) % flavors.length;
-    }
-    updateFlavor();
-});
 
 function hideElement(element)
 {
@@ -350,6 +339,20 @@ if (device === 'Phone')
         progressRingText2.setAttribute('x',25);
         progressRingText2.setAttribute('y',30);
     }
+}
+else if (device === 'Desktop')
+{
+    // Scroll event listener for flavor switching
+    window.addEventListener('wheel', (event) => {
+        if (event.deltaY > 0) {
+            // Scroll down - next flavor
+            currentFlavorIndex = (currentFlavorIndex + 1) % flavors.length;
+        } else if (event.deltaY < 0) {
+            // Scroll up - previous flavor
+            currentFlavorIndex = (currentFlavorIndex - 1 + flavors.length) % flavors.length;
+        }
+        updateFlavor();
+    });
 }
 
 function changeCanvasColor(color, imgPath, canvasId)

@@ -408,5 +408,7 @@ function detectDeviceType()
 }
 
 // Initialize
-createFlavorSelector();
-updateFlavor();
+document.addEventListener('DOMContentLoaded', ()=>{
+    createFlavorSelector();
+    updateFlavor();
+} )

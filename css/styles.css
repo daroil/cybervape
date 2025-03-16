@@ -369,7 +369,7 @@ footer {
     z-index: 1;
 }
 
-@media only screen and (max-width: 768px){
+@media (max-width: 768px){
     .row{
         flex-direction: column;
     }

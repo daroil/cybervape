@@ -284,7 +284,7 @@ header p {
 /* Progress Ring (SVG) */
 .progress-ring {
     --progress: 0; /* Default value */
-    /*--circumference: calc(45 * 2 * 3.14159); !* 2πr for r=45 *!*/
+    --circumference: calc(45 * 2 * 3.14159); /* 2πr for r=45 */
     position: relative;
 }
 
@@ -298,11 +298,11 @@ header p {
     fill: none;
     stroke: var(--progress-fill);
     stroke-width: 10;
-    /*stroke-dasharray: var(--circumference);*/
+    stroke-dasharray: var(--circumference);
     transform: rotate(-90deg); /* Start at 12 o'clock */
     transform-origin: 50% 50%;
     transition: stroke-dashoffset 1.5s;
-    /*stroke-dashoffset: calc(var(--circumference) - (var(--progress) / 100) * var(--circumference));*/
+    stroke-dashoffset: calc(var(--circumference) - (var(--progress) / 100) * var(--circumference));
 }
 
 .progress-ring-text {

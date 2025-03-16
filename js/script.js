@@ -277,16 +277,16 @@ function updateFlavor() {
         progressRing2.style.setProperty('--progress', flavor.progress_2);
         progressRingText2.textContent = `${flavor.progress_2}%`; // Update text
     }
-    changeSVGColor(flavor.color);
-    changeCanvasColor(flavor.color,flavor.icon1, 'flavor_icon_1');
+    // changeSVGColor(flavor.color);
+    // changeCanvasColor(flavor.color,flavor.icon1, 'flavor_icon_1');
     if (flavor.icon2)
     {
         showElement(icon2)
-        changeCanvasColor(flavor.color,flavor.icon2,'flavor_icon_2');
+        // changeCanvasColor(flavor.color,flavor.icon2,'flavor_icon_2');
     }
     else
         hideElement(icon2);
-    changeCanvasColor(flavor.color,flavor.icon_freeze, 'freeze_icon');
+    // changeCanvasColor(flavor.color,flavor.icon_freeze, 'freeze_icon');
     document.documentElement.style.setProperty('--progress-fill', flavor.color);
     progressLine.style.setProperty('--progress', flavor.progress_freeze);
     progressLine.classList.add('animate-progress');

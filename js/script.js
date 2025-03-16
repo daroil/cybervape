@@ -307,6 +307,7 @@ function createFlavorSelector() {
 }
 
 
+
 function hideElement(element)
 {
     if (element)

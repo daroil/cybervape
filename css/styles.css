@@ -23,15 +23,16 @@ body {
     background-color: #2a1a3f; /* Dark purple background */
     color: #d8c4f5; /* Light purple text */
     height: 100vh;
-    overflow: hidden; /* Prevents page scrolling */
+    /*overflow: hidden; !* Prevents page scrolling *!*/
     position: relative;
 }
 
 .background{
     position: absolute;
     z-index: -1;
-    overflow: hidden;
+    overflow: visible;
     width: 100vw;
+    height: 100vh;
 }
 
 .splash {
@@ -97,7 +98,8 @@ header p {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 20px;
+    margin: 0;
+    /*padding: 20px;*/
     position: relative;
     z-index: 1;
 }

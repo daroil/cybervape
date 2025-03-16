@@ -4,106 +4,139 @@ const flavors = [
         name: "CHARGE",
         desc: "Яблоко-жвачка.",
         image: "img/Blossom.png",
+        icon1: "img/apple.png",
+        icon2: "img/bubble_gum.png",
+        icon_freeze: "img/snow.png",
         progress: 60,
         progress_2: 40,
         progress_freeze: 0,
-        color: 'white'
+        color: '#15c900'
     },
     {
         name: "BLOSSOM",
         desc: "Вишнево-ягодный йогурт.",
-        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        image: "img/Blossom.png",
+        icon1: "img/cherry_yoghurt.png",
+        icon2: "img/berries.png",
+        icon_freeze: "img/snow.png",
         progress: 60,
         progress_2: 40,
         progress_freeze: 0,
-        color: 'purple'
+        color: '#fc5bae'
     },
     {
         name: "MIDNIGHT",
         desc: "Черника.",
-        image: "img/wizard_2.jpg",
+        image: "img/Blossom.png",
+        icon1: "img/blueberry.png",
+        icon_freeze: "img/snow.png",
         progress: 100,
         progress_freeze: 25,
-        color: '#BF00FF'
+        color: '#bc5dff'
     },
     {
         name: "GUISE",
         desc: "Премиальный табак.",
-        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        image: "img/Blossom.png",
+        icon1: "img/premium_tobacco.png",
+        icon_freeze: "img/snow.png",
         progress: 100,
         progress_freeze: 0,
-        color: '#BF00FF'
+        color: '#df6d3e'
     },
     {
         name: "MAZE",
         desc: "Вишневый табак.",
-        image: "img/wizard_2.jpg",
+        image: "img/Blossom.png",
+        icon1: "img/tobacco.png",
+        icon2: "img/cherry.png",
+        icon_freeze: "img/snow.png",
         progress: 50,
         progress_2: 50,
         progress_freeze: 0,
-        color: '#'
+        color: '#c92571'
     },
     {
         name: "FLUX",
         desc: "Скитлз.",
-        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        image: "img/Blossom.png",
+        icon1: "img/skittles.png",
+        icon_freeze: "img/snow.png",
         progress: 100,
         progress_freeze: 0,
-        color: '#'
+        color: '#ff00f6'
     },
     {
         name: "NOVA",
         desc: "Клубника-банан.",
-        image: "img/wizard_2.jpg",
+        image: "img/Blossom.png",
+        icon1: "img/strawberry.png",
+        icon2: "img/banana.png",
+        icon_freeze: "img/snow.png",
         progress: 50,
         progress_2: 50,
         progress_freeze: 25,
-        color: '#'
+        color: '#ffc43d'
     },
     {
         name: "SPROUT",
         desc: "Ягоды-мята-хвоя.",
-        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        image: "img/Blossom.png",
+        icon1: "img/blueberry.png",
+        icon2: "img/cone.png",
+        icon_freeze: "img/snow.png",
         progress: 75,
         progress_2: 25,
         progress_freeze: 0,
-        color: '#'
+        color: '#5e6da6'
     },
     {
         name: "SURGE",
         desc: "Персик-манго-ананас.",
-        image: "img/wizard_2.jpg",
+        image: "img/Blossom.png",
+        icon1: "img/peach-mango.png",
+        icon2: "img/pineapple.png",
+        icon_freeze: "img/snow.png",
         progress: 60,
         progress_2: 40,
         progress_freeze: 25,
-        color: '#'
+        color: '#e82555'
     },
     {
         name: "TETHER",
         desc: "Клубника-киви.",
-        image: "img/wizard_2.jpg",
+        image: "img/Blossom.png",
+        icon1: "img/strawberry2.png",
+        icon2: "img/kiwi.png",
+        icon_freeze: "img/snow.png",
         progress: 60,
         progress_2: 40,
         progress_freeze: 25,
-        color: '#'
+        color: '#fb5f87'
     },
     {
         name: "BOGBORN",
         desc: "Лесные ягоды.",
-        image: "https://via.placeholder.com/300x400?text=Smoky+Citrus",
+        image: "img/Blossom.png",
+        icon1: "img/raspberry.png",
+        icon2: "img/blueberry2.png",
+        icon_freeze: "img/snow.png",
         progress: 50,
         progress_2: 50,
         progress_freeze: 25,
-        color: '#'
+        color: '#e4906a'
     },
     {
         name: "EMBERBARK",
         desc: "Черный чай, земляника-персик.",
-        image: "img/wizard_2.jpg",
+        image: "img/Blossom.png",
+        icon1: "img/peach_tea.png",
+        icon2: "img/strawberry.png",
+        icon_freeze: "img/snow.png",
         progress: 60,
         progress_2: 40,
         progress_freeze: 0,
-        color: '#'
+        color: '#f93f36'
     }
 ];
 
@@ -122,6 +155,11 @@ const progressLine = document.querySelector('.progress-line');
 const progressRingText = document.getElementById('progress-ring-text');
 const progressRingText2 = document.getElementById('progress-ring-2-text');
 const bgVideo = document.getElementById('bg-video');
+const icon1 = document.getElementById('flavor_icon_1');
+const icon2 = document.getElementById('flavor_icon_2');
+const icon_freeze = document.getElementById('freeze_icon');
+
+const device = detectDeviceType();
 
 function updateSVGColor(color){
     const path = document.getElementById('path3619');
@@ -146,6 +184,15 @@ function changeSVGColor(color) {
             circle.setAttribute('fill', color); // Change 'fill' to 'stroke' if needed
         }
     });
+    const svgDoc = svgObject.contentDocument;
+
+// Find the element you want to change (e.g., a circle or path)
+    const circle = svgDoc.querySelector('path'); // Change 'circle' to the appropriate selector
+
+    // Change the color
+    if (circle) {
+        circle.setAttribute('fill', color); // Change 'fill' to 'stroke' if needed
+    }
 }
 
 
@@ -189,11 +236,22 @@ function updateFlavor() {
     else
     {
         showElement(progressRing2);
-        showElement(progressRingText2);
+        if(device !== 'Phone')
+            showElement(progressRingText2);
         progressRing2.style.setProperty('--progress', flavor.progress_2);
         progressRingText2.textContent = `${flavor.progress_2}%`; // Update text
     }
-    changeSVGColor('white');
+    changeSVGColor(flavor.color);
+    changeCanvasColor(flavor.color,flavor.icon1, 'flavor_icon_1');
+    if (flavor.icon2)
+    {
+        showElement(icon2)
+        changeCanvasColor(flavor.color,flavor.icon2,'flavor_icon_2');
+    }
+    else
+        hideElement(icon2);
+    changeCanvasColor(flavor.color,flavor.icon_freeze, 'freeze_icon');
+    document.documentElement.style.setProperty('--progress-fill', flavor.color);
     progressLine.style.setProperty('--progress', flavor.progress_freeze);
     progressLine.classList.add('animate-progress');
 }
@@ -202,12 +260,13 @@ function updateFlavor() {
 function createFlavorSelector() {
     flavors.forEach((flavor, index) => {
         const button = document.createElement('button');
-        button.textContent = flavor.name;
+        // button.textContent = flavor.name;
         button.addEventListener('click', () => {
             currentFlavorIndex = index;
             updateFlavor();
         });
-        flavorSelector.appendChild(button);
+        if( flavorSelector)
+            flavorSelector.appendChild(button);
     });
 }
 
@@ -241,7 +300,109 @@ function showElement(element)
     }
 }
 
-bgVideo.playbackRate = 0.5; // Half speed (adjust as needed)
+if(bgVideo)
+    bgVideo.playbackRate = 0.5; // Half speed (adjust as needed)
+
+function changeRing(object)
+{
+    if (object)
+    {
+        object.setAttribute('cx', 25);
+        object.setAttribute('cy', 25);
+        object.setAttribute('r', 20);
+    }
+}
+
+if (device === 'Phone')
+{
+    const progressRing = document.getElementById('progress-ring');
+    const progressRing2 = document.getElementById('progress-ring-2');
+    const progressRingFill1 = document.getElementById('progress-ring-fill-1');
+    const progressRingFill2 = document.getElementById('progress-ring-fill-2');
+    const progressRingBg1 = document.getElementById('progress-ring-bg-1');
+    const progressRingBg2 = document.getElementById('progress-ring-bg-2');
+    const progressRingText = document.getElementById('progress-ring-text');
+    const progressRingText2 = document.getElementById('progress-ring-2-text');
+
+    if (progressRing)
+    {
+        progressRing.setAttribute('width', 50);
+        progressRing.setAttribute('height', 50);
+    }
+    if (progressRing2)
+    {
+        progressRing2.setAttribute('width', 50);
+        progressRing2.setAttribute('height', 50);
+    }
+    changeRing(progressRingFill1);
+    changeRing(progressRingBg1);
+    changeRing(progressRingFill2);
+    changeRing(progressRingBg2);
+    if(progressRingText)
+    {
+        hideElement(progressRingText)
+        progressRingText.setAttribute('x',25);
+        progressRingText.setAttribute('y',30);
+    }
+    if(progressRingText2)
+    {
+        hideElement(progressRingText2)
+        progressRingText2.setAttribute('x',25);
+        progressRingText2.setAttribute('y',30);
+    }
+}
+
+function changeCanvasColor(color, imgPath, canvasId)
+{
+    const flavor_icon = document.getElementById(canvasId);
+     const img = new Image();
+    img.src = imgPath;
+
+    img.onload = function () {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        // Draw the black image
+        ctx.drawImage(img, 0, 0);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const rNew = parseInt(color.slice(1, 3), 16);
+        const gNew = parseInt(color.slice(3, 5), 16);
+        const bNew = parseInt(color.slice(5, 7), 16);
+
+        // Change color (Example: Red)
+        for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+
+            // Detect black pixels (allowing slight variations)
+            if (r < 50 && g < 50 && b < 50) {
+                data[i] = rNew;     // New Red
+                data[i + 1] = gNew; // New Green
+                data[i + 2] = bNew; // New Blue
+            }
+        }
+        ctx.putImageData(imageData, 0, 0);
+    };
+}
+
+function detectDeviceType()
+{
+    const width = window.innerWidth;
+
+    if (width <= 768) {
+        return "Phone";
+    } else if (width <= 1024) {
+        return "Tablet";
+    } else {
+        return "Desktop";
+    }
+
+}
 
 // Initialize
 createFlavorSelector();

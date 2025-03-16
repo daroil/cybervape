@@ -69,7 +69,13 @@ header {
     /*padding: 20px;*/
     /*background-color: #3b2559;*/
     border-bottom: 2px solid #5a3c78;
-    position: relative;
+    position: absolute;
+    display: flex;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    margin-top: 1em;
     z-index: 1;
 }
 
@@ -90,7 +96,7 @@ header p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 400px);
+    height: 100vh;
     padding: 20px;
     position: relative;
     z-index: 1;
@@ -115,8 +121,8 @@ header p {
 }
 
 .product-image img {
-    width: 15em;
-    height: auto;
+    width: auto;
+    height: 25em;
     border-radius: 5px;
     z-index: 1;
 }
@@ -136,6 +142,24 @@ header p {
 
 .product-image.animate {
     animation: imagePop 0.8s ease-out forwards;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.justify-content-center{
+    justify-content: center;
+}
+
+.align-items-center{
+    align-items: center;
 }
 
 @keyframes imagePop {
@@ -159,6 +183,10 @@ header p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.product-name{
+    color: var(--progress-fill);
 }
 
 .product-description.animate {
@@ -193,7 +221,7 @@ header p {
 }
 
 .flavor-selector {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -217,16 +245,38 @@ header p {
 }
 
 .flavor-selector button.active {
-    background-color: var(--vibrant-accent);
-    border-color: var(--vibrant-accent);
+    background-color: var(--progress-fill);
+    border-color: var(--progress-fill);
+}
+
+
+.fill-height{
+    height: -webkit-fill-available;
+}
+
+.fill-width{
+    width: -webkit-fill-available;
+}
+
+.flavor-icon{
+    height: 7em;
+}
+
+.col-1{
+    flex-basis: 25%;
+}
+
+.col-2{
+    flex-basis: 75%;
 }
 
 .progress-examples {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /*align-items: center;*/
     gap: 20px;
+    justify-content: center;
 }
 
 /* Progress Ring (SVG) */
@@ -317,4 +367,29 @@ footer {
     bottom: 0;
     width: 100%;
     z-index: 1;
+}
+
+@media only screen and (max-width: 768px){
+    .row{
+        flex-direction: column;
+    }
+    .product-image img{
+        height: 10em;
+    }
+    .bg_image{
+        width: 10em;
+    }
+    .progress-ring{
+        --circumference: calc(20 * 2 * 3.14159); /* 2πr for r=45 */
+    }
+    .alwaysRow{
+        flex-direction: row !important;
+    }
+    .flavor-icon{
+        height: 5em;
+    }
+    .logo img{
+        width: 5em;
+    }
+
 }
